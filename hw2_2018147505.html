@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      .canvas-message {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: white;
+        font-size: 16px;
+        pointer-events: none;
+        z-index: 10;
+      }
+    </style>
+    <title>hw2_2018147505</title>
+  </head>
+  <body>
+    <div style="position: relative">
+      <canvas id="glCanvas"></canvas>
+      <div class="canvas-message">Use arrow keys to move the rectangle</div>
+    </div>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
