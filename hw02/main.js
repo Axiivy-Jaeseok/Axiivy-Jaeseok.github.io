@@ -61,6 +61,29 @@ function resizeAspectRatio() {
   }
 }
 
+function setupText(canvas, initialText, line = 1) {
+  if (line == 1) {
+    const existingOverlay = document.getElementById("textOverlay");
+    if (existingOverlay) {
+      existingOverlay.remove();
+    }
+  }
+
+  const overlay = document.createElement("div");
+  overlay.id = "textOverlay";
+  overlay.style.position = "fixed";
+  overlay.style.left = canvas.offsetLeft + 10 + "px";
+  overlay.style.top = canvas.offsetTop + (20 * (line - 1) + 10) + "px";
+  overlay.style.color = "white";
+  overlay.style.fontFamily = "monospace";
+  overlay.style.fontSize = "14px";
+  overlay.style.zIndex = "100";
+  overlay.textContent = `${initialText}`;
+
+  canvas.parentElement.appendChild(overlay);
+  return overlay;
+}
+
 function updatePosition() {
   let newX = rectangleX;
   let newY = rectangleY;
@@ -112,6 +135,8 @@ async function init() {
 
   gl.useProgram(shaderProgram);
   uPositionLocation = gl.getUniformLocation(shaderProgram, "uPosition");
+
+  setupText(canvas, "Use arrow keys to move the rectangle", 1);
 
   window.addEventListener("resize", resizeAspectRatio);
   resizeAspectRatio();
